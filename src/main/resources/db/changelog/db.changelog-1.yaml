@@ -1,0 +1,52 @@
+databaseChangeLog:
+  - changeSet:
+      id: '1'
+      author: fydhfzh
+      changes:
+        - sql:
+            sql: CREATE EXTENSION IF NOT EXISTS "uuid-ossp"
+  - changeSet:
+      id: '2'
+      author: fydhfzh
+      preConditions:
+        - onFail: MARK_RAN
+          not:
+            - tableExists:
+                tableName: posts
+      changes:
+        - createTable:
+            tableName: posts
+            columns:
+              - column:
+                  name: id
+                  type: uuid
+                  defaultValueComputed: uuid_generate_v4()
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+              - column:
+                  name: title
+                  type: VARCHAR
+                  constraints:
+                    nullable: false
+              - column:
+                  name: content
+                  type: VARCHAR
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_at
+                  type: 'timestamp with time zone'
+                  defaultValueComputed: now()
+                  constraints:
+                    nullable: false
+              - column:
+                  name: updated_at
+                  type: 'timestamp with time zone'
+                  defaultValueComputed: now()
+                  constraints:
+                    nullable: false
+              - column:
+                  name: deleted_at
+                  type: 'timestamp with time zone'
+                  defaultOnNull: true

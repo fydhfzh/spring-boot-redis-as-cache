@@ -1,0 +1,34 @@
+spring:
+  main:
+    banner-mode: off
+  application:
+    name: 'Prost - Programming Post'
+  datasource:
+    url: jdbc:postgresql://localhost:5432/prost
+    username: fydhfzh
+    password: fydhfzh
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+  data:
+    redis:
+      database: 0
+      host: localhost
+      port: 6379
+      username: fydhfzh
+      password: fydhfzh
+  cache:
+    type: redis
+  liquibase:
+    change-log: classpath:db/changelog/db.changelog-master.yaml
+    enabled: true
+server:
+  port: 8080
+  servlet:
+    context-path: /api
+
+logging:
+  level:
+    '[org.hibernate.sql]': DEBUG

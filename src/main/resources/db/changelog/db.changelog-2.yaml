@@ -1,0 +1,12 @@
+databaseChangeLog:
+  - changeSet:
+      id: '1'
+      author: fydhfzh
+      changes:
+        - addColumn:
+            tableName: posts
+            columns:
+              - column:
+                  name: author_name
+                  type: VARCHAR
+                  defaultOnNull: true
